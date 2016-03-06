@@ -12,10 +12,12 @@ import javax.swing.JButton;
 
 import db.DAO;
 import db.DbDataAccess;
+import db.FileDataAccess;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+@SuppressWarnings({ "unused", "serial" })
 public class MainFrame extends JFrame {
 
 	private JPanel contentPane;
@@ -25,7 +27,7 @@ public class MainFrame extends JFrame {
 	private JButton btnDecrypter;
 	private JButton btnEnregistrer;
 	
-	DAO dbDao = new DbDataAccess();
+	DAO fileDao = new FileDataAccess();
 
 	/**
 	 * Create the frame.
@@ -40,7 +42,7 @@ public class MainFrame extends JFrame {
 		
 		notestTextArea = new JTextArea();
 		try {
-			notestTextArea.setText(dbDao.loadNote().getNote());
+			notestTextArea.setText(fileDao.loadNote().getNote());
 		} catch (Exception e1) {
 			e1.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Oups something wrong happened :(");
@@ -85,7 +87,7 @@ public class MainFrame extends JFrame {
 		 	public void actionPerformed(ActionEvent arg0) {
 		 		
 		 		try {
-					dbDao.save(notestTextArea.getText().toString());
+					fileDao.save(notestTextArea.getText().toString());
 				} catch (Exception e) {
 					e.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Oups something wrong happened :(");

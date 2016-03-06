@@ -59,9 +59,25 @@ public class MainFrame extends JFrame {
 		panel.add(btnVider);
 		
 		buttonCrypter = new JButton("crypter");
+		buttonCrypter.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				notestTextArea.setText(encrypt(notestTextArea.getText()));
+			}
+		});
 		panel.add(buttonCrypter);
 		
 		 btnDecrypter = new JButton("Decrypter");
+		 btnDecrypter.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				notestTextArea.setText(decrypt(notestTextArea.getText()));
+			}
+		});
 		panel.add(btnDecrypter);
 		
 		 btnEnregistrer = new JButton("Enregistrer");
@@ -79,4 +95,24 @@ public class MainFrame extends JFrame {
 		panel.add(btnEnregistrer);
 	}
 
+	
+	//methode de cryptage 
+		 public String encrypt(String text){
+		        String crypte="";
+		        for (int i=0; i<text.length();i++)  {
+		            int c=text.charAt(i)^48;  
+		            crypte=crypte+(char)c; 
+		        }
+		        return crypte;
+		    }
+		 
+		 //methode de decryptage 
+		 public String decrypt(String text){
+		        String aCrypter="";
+		        for (int i=0; i<text.length();i++)  {
+		            int c=text.charAt(i)^48;  
+		            aCrypter=aCrypter+(char)c; 
+		        }
+		        return aCrypter;
+		    }
 }
